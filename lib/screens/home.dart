@@ -6,10 +6,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.purple,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.purple,
         title: const Text('Dicee'),
       ),
       body: const DicePage(),
@@ -26,10 +26,16 @@ class DicePage extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Image.asset('images/dice1.png'),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.asset('images/dice1.png'),
+            ),
           ),
           Expanded(
-            child: Image.asset('images/dice1.png'),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.asset('images/dice1.png'),
+            ),
           ),
         ],
       ),
