@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+import 'models/models.dart';
+
 import 'screens/screens.dart';
 
 class App extends StatelessWidget {
@@ -7,9 +10,18 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) {
+              return RamdomDiceManager();
+            },
+          )
+        ],
+        child: const HomeScreen(),
+      ),
     );
   }
 }

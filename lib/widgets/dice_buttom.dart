@@ -1,38 +1,26 @@
-import 'dart:math';
+import '../models/models.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class DiceButtom extends StatefulWidget {
-  const DiceButtom({Key? key}) : super(key: key);
-
-  @override
-  _DiceButtomState createState() => _DiceButtomState();
-}
-
-class _DiceButtomState extends State<DiceButtom> {
-  final random = Random();
-  late int diceNumber;
-
-  @override
-  void initState() {
-    diceNumber = random.nextInt(6) + 1;
-    super.initState();
-  }
+class DiceButtom extends StatelessWidget {
+  const DiceButtom({Key? key, required this.diceValue}) : super(key: key);
+  final int diceValue;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all<EdgeInsets>(
-          const EdgeInsets.all(16),
-        ),
-      ),
-      onPressed: () {
-        setState(() {
-          diceNumber = random.nextInt(6) + 1;
-        });
+    return Consumer<RamdomDiceManager>(
+      builder: (context, randomDiceManager, child) {
+        return TextButton(
+          style: ButtonStyle(
+            padding: MaterialStateProperty.all<EdgeInsets>(
+              const EdgeInsets.all(16),
+            ),
+          ),
+          onPressed: randomDiceManager.randomizeDice,
+          child: Image.asset('images/dice$diceValue.png'),
+        );
       },
-      child: Image.asset('images/dice$diceNumber.png'),
     );
   }
 }

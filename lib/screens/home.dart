@@ -1,4 +1,6 @@
+import 'package:dicee_app/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/widgets.dart';
 
@@ -26,12 +28,20 @@ class DicePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Row(
-        children: const [
+        children: [
           Expanded(
-            child: DiceButtom(),
+            child: DiceButtom(
+              diceValue: Provider.of<RamdomDiceManager>(
+                context,
+              ).leftDice,
+            ),
           ),
           Expanded(
-            child: DiceButtom(),
+            child: DiceButtom(
+              diceValue: Provider.of<RamdomDiceManager>(
+                context,
+              ).righDice,
+            ),
           ),
         ],
       ),
