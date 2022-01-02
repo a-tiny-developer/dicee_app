@@ -26,25 +26,25 @@ class DicePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          Expanded(
-            child: DiceButtom(
-              diceValue: Provider.of<RamdomDiceManager>(
-                context,
-              ).leftDice,
-            ),
+    return Consumer<RamdomDiceManager>(
+      builder: (context, manager, child) {
+        return Center(
+          child: Row(
+            children: [
+              Expanded(
+                child: DiceButtom(
+                  diceValue: manager.leftDice,
+                ),
+              ),
+              Expanded(
+                child: DiceButtom(
+                  diceValue: manager.righDice,
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: DiceButtom(
-              diceValue: Provider.of<RamdomDiceManager>(
-                context,
-              ).righDice,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

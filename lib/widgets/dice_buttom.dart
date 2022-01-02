@@ -9,18 +9,17 @@ class DiceButtom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<RamdomDiceManager>(
-      builder: (context, randomDiceManager, child) {
-        return TextButton(
-          style: ButtonStyle(
-            padding: MaterialStateProperty.all<EdgeInsets>(
-              const EdgeInsets.all(16),
-            ),
-          ),
-          onPressed: randomDiceManager.randomizeDice,
-          child: Image.asset('images/dice$diceValue.png'),
-        );
-      },
+    return TextButton(
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all<EdgeInsets>(
+          const EdgeInsets.all(16),
+        ),
+      ),
+      onPressed: Provider.of<RamdomDiceManager>(
+        context,
+        listen: false,
+      ).randomizeDice,
+      child: Image.asset('images/dice$diceValue.png'),
     );
   }
 }

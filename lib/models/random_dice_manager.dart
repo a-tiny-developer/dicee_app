@@ -12,4 +12,8 @@ class RamdomDiceManager extends ChangeNotifier {
     righDice = random.nextInt(6) + 1;
     notifyListeners();
   }
+
+  RamdomDiceManager() {
+    randomizeDice();
+  }
 }
