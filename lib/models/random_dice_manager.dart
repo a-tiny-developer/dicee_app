@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class RamdomDiceManager extends ChangeNotifier {
   final random = Random();
-  int leftDice = 1;
-  int righDice = 1;
+  late int leftDice;
+  late int righDice;
 
   void randomizeDice() {
     leftDice = random.nextInt(6) + 1;
