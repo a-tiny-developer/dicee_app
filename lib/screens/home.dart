@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,10 +8,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.teal[400],
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.purple,
+        backgroundColor: Colors.teal,
         title: const Text('Dicee'),
       ),
       body: const DicePage(),
@@ -17,8 +19,24 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
   const DicePage({Key? key}) : super(key: key);
+
+  @override
+  State<DicePage> createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  final random = Random();
+  late int leftDiceNumber;
+  late int righDiceNumber;
+
+  @override
+  void initState() {
+    leftDiceNumber = random.nextInt(6) + 1;
+    righDiceNumber = random.nextInt(6) + 1;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +50,12 @@ class DicePage extends StatelessWidget {
                   const EdgeInsets.all(16),
                 ),
               ),
-              onPressed: () {},
-              child: Image.asset('images/dice1.png'),
+              onPressed: () {
+                setState(() {
+                  leftDiceNumber = random.nextInt(6) + 1;
+                });
+              },
+              child: Image.asset('images/dice$leftDiceNumber.png'),
             ),
           ),
           Expanded(
@@ -43,8 +65,12 @@ class DicePage extends StatelessWidget {
                   const EdgeInsets.all(16),
                 ),
               ),
-              onPressed: () {},
-              child: Image.asset('images/dice1.png'),
+              onPressed: () {
+                setState(() {
+                  righDiceNumber = random.nextInt(6) + 1;
+                });
+              },
+              child: Image.asset('images/dice$righDiceNumber.png'),
             ),
           ),
         ],
